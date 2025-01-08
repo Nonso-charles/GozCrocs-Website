@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Goz Crocs Shop</title>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .cart-section {
@@ -13,12 +12,17 @@
             padding: 20px;
             position: fixed;
             top: 0;
-            right: 0;
+            right: -100%; /* Initially hidden */
             width: 300px;
             height: 100%;
             box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            display: none;
             overflow-y: auto;
+            z-index: 1000;
+            transition: right 0.3s ease-in-out;
+        }
+
+        .cart-section.active {
+            right: 0; /* Slide into view */
         }
     </style>
 </head>
@@ -31,47 +35,75 @@
             <h2 class="text-4xl font-bold text-center mb-8">Shop Our Crocs</h2>
 
             <!-- Product Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                <!-- Repeat this block for 30 products -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                <!-- Product 1 -->
                 <div class="bg-white rounded-lg shadow-lg p-6">
                     <img src="https://via.placeholder.com/300x200" alt="Product 1" class="w-full h-40 object-cover rounded-md mb-4">
-                    <h3 class="text-xl font-semibold mb-2">Product 1</h3>
+                    <h3 class="text-xl font-semibold mb-2">Classic Crocs</h3>
                     <p class="text-lg text-gray-700 mb-4">$49.99</p>
-                    <button onclick="addToCart('Product 1', 49.99)" class="w-full py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-300">Add to Cart</button>
+                    <button onclick="addToCart('Classic Crocs', 49.99)" class="w-full py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-300">Add to Cart</button>
                 </div>
-                
-                                <div class="bg-white rounded-lg shadow-lg p-6">
-                    <img src="https://via.placeholder.com/300x200" alt="Product 1" class="w-full h-40 object-cover rounded-md mb-4">
-                    <h3 class="text-xl font-semibold mb-2">Product 1</h3>
-                    <p class="text-lg text-gray-700 mb-4">$39.99</p>
-                    <button onclick="addToCart('Product 1', 39.99)" class="w-full py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-300">Add to Cart</button>
-                </div>
-                
-                                <div class="bg-white rounded-lg shadow-lg p-6">
-                    <img src="https://via.placeholder.com/300x200" alt="Product 1" class="w-full h-40 object-cover rounded-md mb-4">
-                    <h3 class="text-xl font-semibold mb-2">Product 1</h3>
-                    <p class="text-lg text-gray-700 mb-4">$30.99</p>
-                    <button onclick="addToCart('Product 1', 30.99)" class="w-full py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-300">Add to Cart</button>
-                </div>
-                
-                <!-- Repeat similar blocks for other products -->
-                <!-- Add 29 more product cards here -->
-
-                <!-- Example for Product 2 -->
+                <!-- Product 2 -->
                 <div class="bg-white rounded-lg shadow-lg p-6">
                     <img src="https://via.placeholder.com/300x200" alt="Product 2" class="w-full h-40 object-cover rounded-md mb-4">
-                    <h3 class="text-xl font-semibold mb-2">Product 2</h3>
+                    <h3 class="text-xl font-semibold mb-2">Sporty Crocs</h3>
                     <p class="text-lg text-gray-700 mb-4">$59.99</p>
-                    <button onclick="addToCart('Product 2', 59.99)" class="w-full py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-300">Add to Cart</button>
+                    <button onclick="addToCart('Sporty Crocs', 59.99)" class="w-full py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-300">Add to Cart</button>
                 </div>
-                <!-- Add more products as needed -->
+                <!-- Product 3 -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <img src="https://via.placeholder.com/300x200" alt="Product 3" class="w-full h-40 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Kids Crocs</h3>
+                    <p class="text-lg text-gray-700 mb-4">$39.99</p>
+                    <button onclick="addToCart('Kids Crocs', 39.99)" class="w-full py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-300">Add to Cart</button>
+                </div>
+                <!-- Add more products -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <img src="https://via.placeholder.com/300x200" alt="Product 4" class="w-full h-40 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Croc Sandals</h3>
+                    <p class="text-lg text-gray-700 mb-4">$44.99</p>
+                    <button onclick="addToCart('Croc Sandals', 44.99)" class="w-full py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-300">Add to Cart</button>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <img src="https://via.placeholder.com/300x200" alt="Product 5" class="w-full h-40 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Crocs Slippers</h3>
+                    <p class="text-lg text-gray-700 mb-4">$29.99</p>
+                    <button onclick="addToCart('Crocs Slippers', 29.99)" class="w-full py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-300">Add to Cart</button>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <img src="https://via.placeholder.com/300x200" alt="Product 6" class="w-full h-40 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Rainy Crocs</h3>
+                    <p class="text-lg text-gray-700 mb-4">$54.99</p>
+                    <button onclick="addToCart('Rainy Crocs', 54.99)" class="w-full py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-300">Add to Cart</button>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <img src="https://via.placeholder.com/300x200" alt="Product 7" class="w-full h-40 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Comfort Crocs</h3>
+                    <p class="text-lg text-gray-700 mb-4">$69.99</p>
+                    <button onclick="addToCart('Comfort Crocs', 69.99)" class="w-full py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-300">Add to Cart</button>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <img src="https://via.placeholder.com/300x200" alt="Product 8" class="w-full h-40 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Fluffy Crocs</h3>
+                    <p class="text-lg text-gray-700 mb-4">$64.99</p>
+                    <button onclick="addToCart('Fluffy Crocs', 64.99)" class="w-full py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-300">Add to Cart</button>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <img src="https://via.placeholder.com/300x200" alt="Product 9" class="w-full h-40 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Limited Edition Crocs</h3>
+                    <p class="text-lg text-gray-700 mb-4">$99.99</p>
+                    <button onclick="addToCart('Limited Edition Crocs', 99.99)" class="w-full py-3 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-300">Add to Cart</button>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Cart Section -->
     <div id="cartSection" class="cart-section">
-        <h3 class="text-2xl font-bold mb-4">Your Cart</h3>
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-2xl font-bold">Your Cart</h3>
+            <button onclick="toggleCart()" class="text-white text-2xl font-bold">&times;</button>
+        </div>
         <div id="cartItems" class="mb-4">
             <!-- Cart items will be dynamically added here -->
         </div>
@@ -84,54 +116,42 @@
     <script>
         let cart = [];
 
+        function toggleCart() {
+            const cartSection = document.getElementById("cartSection");
+            cartSection.classList.toggle("active");
+        }
+
         function addToCart(productName, price) {
-            // Check if the product is already in the cart
             const productIndex = cart.findIndex(item => item.productName === productName);
 
             if (productIndex === -1) {
-                // Product not in cart, add to cart
                 cart.push({ productName, price });
             }
 
             updateCart();
+            toggleCart();
         }
 
         function updateCart() {
-            // Update cart display
             const cartItemsContainer = document.getElementById("cartItems");
             const cartTotal = document.getElementById("cartTotal");
 
-            // Clear the cart items
             cartItemsContainer.innerHTML = '';
-
             let total = 0;
 
-            // Add each item in the cart to the display
             cart.forEach(item => {
                 const cartItem = document.createElement("div");
                 cartItem.classList.add("mb-4");
-
-                cartItem.innerHTML = `
-                    <p class="text-lg font-semibold">${item.productName} - $${item.price.toFixed(2)}</p>
-                `;
+                cartItem.innerHTML = `<p class="text-lg font-semibold">${item.productName} - $${item.price.toFixed(2)}</p>`;
                 cartItemsContainer.appendChild(cartItem);
 
                 total += item.price;
             });
 
-            // Update total price
             cartTotal.textContent = total.toFixed(2);
-
-            // Show cart section if items exist
-            if (cart.length > 0) {
-                document.getElementById("cartSection").style.display = "block";
-            } else {
-                document.getElementById("cartSection").style.display = "none";
-            }
         }
 
         function checkout() {
-            // You can replace this function with actual checkout logic
             alert("Proceeding to checkout...");
         }
     </script>
